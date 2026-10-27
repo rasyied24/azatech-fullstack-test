@@ -10,6 +10,7 @@ use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use App\Exceptions\InsufficientStockException;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -62,4 +63,6 @@ return Application::configure(basePath: dirname(__DIR__))
 
             return ApiResponse::error($message, null, $status);
         });
+
+        $exceptions->dontReport(InsufficientStockException::class);
     })->create();
