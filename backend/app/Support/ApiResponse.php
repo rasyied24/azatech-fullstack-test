@@ -3,6 +3,7 @@
 namespace App\Support;
 
 use Illuminate\Http\JsonResponse;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 final class ApiResponse
 {
@@ -30,5 +31,23 @@ final class ApiResponse
         }
 
         return response()->json($body, $status);
+    }
+
+    public static function paginated(
+        LengthAwarePaginator $paginator,
+        string $resourceClass,
+        string $message = 'OK',
+    ): JsonResponse {
+        return self::success(
+            $resourceClass::collection($paginator->items())->resolve(),
+            $message,
+            200,
+            [
+                'page' => $paginator->currentPage(),
+                'per_page' => $paginator->perPage(),
+                'total' => $paginator->total(),
+                'total_pages' => $paginator->lastPage(),
+            ],
+        );
     }
 }
