@@ -17,6 +17,8 @@ class Product extends Model
         return ['stock' => 'integer', 'price' => 'decimal:2'];
     }
 
+    public const LOW_STOCK_THRESHOLD = 5;
+
     public function scopeSearch(Builder $query, ?string $term): Builder
     {
         if ($term === null || $term === '') {
