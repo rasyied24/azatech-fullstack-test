@@ -6,7 +6,10 @@ import { useAuth } from '@/features/auth/auth-context'
 import { cn } from '@/lib/utils'
 
 // Menu ditambah per fase (produk, pelanggan, order) saat halamannya sudah ada.
-const NAV_ITEMS = [{ to: '/', label: 'Dashboard', end: true }]
+const NAV_ITEMS = [
+  { to: '/', label: 'Dashboard', end: true },
+  { to: '/products', label: 'Produk', end: false },
+]
 
 export default function AppLayout() {
   const { user, logout } = useAuth()
