@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import { LoaderCircle, LogOut } from 'lucide-react'
 import { NavLink, Outlet } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
@@ -13,6 +13,14 @@ const NAV_ITEMS = [
   { to: '/orders/new', label: 'Buat Order', end: false },
   { to: '/orders', label: 'Riwayat Order', end: true },
 ]
+
+function ContentSpinner() {
+  return (
+    <div className="flex justify-center py-20" role="status" aria-label="Memuat">
+      <LoaderCircle className="size-8 animate-spin text-muted-foreground" />
+    </div>
+  )
+}
 
 export default function AppLayout() {
   const { user, logout } = useAuth()
@@ -60,7 +68,9 @@ export default function AppLayout() {
       </header>
 
       <main className="mx-auto max-w-6xl px-4 py-6">
-        <Outlet />
+        <Suspense fallback={<ContentSpinner />}>
+          <Outlet />
+        </Suspense>
       </main>
     </div>
   )
