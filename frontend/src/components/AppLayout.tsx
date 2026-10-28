@@ -11,6 +11,7 @@ const NAV_ITEMS = [
   { to: '/products', label: 'Produk', end: false },
   { to: '/customers', label: 'Pelanggan', end: false },
   { to: '/orders/new', label: 'Buat Order', end: false },
+  { to: '/orders', label: 'Riwayat Order', end: true },
 ]
 
 export default function AppLayout() {

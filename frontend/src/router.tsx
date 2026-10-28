@@ -6,6 +6,9 @@ import LoginPage from '@/pages/LoginPage'
 import ProductsPage from '@/pages/ProductsPage'
 import CustomersPage from '@/pages/CustomersPage'
 import OrderCreatePage from '@/pages/OrderCreatePage'
+import OrdersPage from '@/pages/OrdersPage'
+import OrderDetailPage from '@/pages/OrderDetailPage'
+
 
 export const router = createBrowserRouter([
   { path: '/login', element: <LoginPage /> },
@@ -20,6 +23,8 @@ export const router = createBrowserRouter([
           { path: '/products', element: <ProductsPage /> },
           { path: '/customers', element: <CustomersPage /> },
           { path: '/orders/new', element: <OrderCreatePage /> },
+          { path: '/orders', element: <OrdersPage /> },
+          { path: '/orders/:id', element: <OrderDetailPage /> },
         ],
       },
     ],

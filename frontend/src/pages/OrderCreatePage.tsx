@@ -16,8 +16,10 @@ import type { OrderFormValues } from '@/features/orders/schema'
 import { applyOrderServerErrors } from '@/features/orders/serverErrors'
 import { ApiError } from '@/lib/api'
 import { getErrorMessage } from '@/lib/forms'
+import { useNavigate } from 'react-router-dom'
 
 export default function OrderCreatePage() {
+  const navigate = useNavigate()
   const form = useForm<OrderFormValues>({
     resolver: zodResolver(orderSchema),
     defaultValues: { customer: null, items: [emptyItem()] },
@@ -26,7 +28,6 @@ export default function OrderCreatePage() {
     control,
     handleSubmit,
     setError,
-    reset,
     formState: { errors },
   } = form
 
@@ -47,7 +48,7 @@ export default function OrderCreatePage() {
     try {
       const order = await create.mutateAsync(payload)
       toast.success(`Order ${order.order_number} berhasil dibuat`)
-      reset({ customer: null, items: [emptyItem()] })
+      navigate(`/orders/${order.id}`)
     } catch (error) {
       if (error instanceof ApiError) applyOrderServerErrors(error, setError)
       else setError('root', { message: getErrorMessage(error) })
