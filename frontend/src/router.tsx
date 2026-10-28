@@ -4,6 +4,7 @@ import ProtectedRoute from '@/features/auth/ProtectedRoute'
 import DashboardPage from '@/pages/DashboardPage'
 import LoginPage from '@/pages/LoginPage'
 import ProductsPage from '@/pages/ProductsPage'
+import CustomersPage from '@/pages/CustomersPage'
 
 export const router = createBrowserRouter([
   { path: '/login', element: <LoginPage /> },
@@ -16,6 +17,7 @@ export const router = createBrowserRouter([
         children: [
           { path: '/', element: <DashboardPage /> },
           { path: '/products', element: <ProductsPage /> },
+          { path: '/customers', element: <CustomersPage /> },
         ],
       },
     ],
