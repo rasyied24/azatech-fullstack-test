@@ -2,6 +2,7 @@ import { keepPreviousData, useMutation, useQuery, useQueryClient } from '@tansta
 import { productKeys } from '@/features/products/hooks'
 import { createOrder, getOrder, listOrders } from './api'
 import type { OrderListParams } from './api'
+import { dashboardKeys } from '@/features/dashboard/hooks'
 
 export const orderKeys = {
   all: ['orders'] as const,
@@ -33,7 +34,7 @@ export function useCreateOrder() {
     mutationFn: createOrder,
     onSuccess: () => {
       void queryClient.invalidateQueries({ queryKey: orderKeys.all })
-      void queryClient.invalidateQueries({ queryKey: ['dashboard'] })
+      void queryClient.invalidateQueries({ queryKey: dashboardKeys.all })
     },
     onSettled: () => {
       void queryClient.invalidateQueries({ queryKey: productKeys.all })

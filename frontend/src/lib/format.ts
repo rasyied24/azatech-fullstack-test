@@ -52,3 +52,9 @@ export function todayIsoDate(): string {
   const pad = (n: number) => String(n).padStart(2, '0')
   return `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`
 }
+
+const numberFormatter = new Intl.NumberFormat('id-ID')
+
+export function formatNumber(value: number): string {
+  return numberFormatter.format(value)
+}
