@@ -46,3 +46,9 @@ export function formatDateTime(value: string | null | undefined): string {
     timeZone: JAKARTA_TZ,
   }).format(date)
 }
+
+export function todayIsoDate(): string {
+  const now = new Date()
+  const pad = (n: number) => String(n).padStart(2, '0')
+  return `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`
+}
