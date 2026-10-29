@@ -59,7 +59,7 @@ Buat dahulu database PostgreSQL kosong bernama `azatech_shop`, lalu jalankan:
 
 ```bash
 # 1. Ambil kode
-git clone https://github.com/rasyied24/azatech-fullstack-test.git && cd azatech-test
+git clone https://github.com/rasyied24/azatech-fullstack-test.git && cd azatech-fullstack-test
 
 # 2. Backend: instal dependensi dan siapkan .env
 cd backend && composer install && cp .env.example .env && php artisan key:generate
